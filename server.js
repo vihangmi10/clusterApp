@@ -1,6 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const cors = require('cors');
+
 dotenv.config({ path: './config/config.env'});
 
 const connection = require('./config/db');
@@ -9,6 +11,7 @@ const getProgramList = require('./routes/programList');
 connection();
 const app = express();
 
+app.use(cors());
 app.use('/api/v1/getProgramList', getProgramList);
 
 const PORT = process.env.PORT || 5000;
